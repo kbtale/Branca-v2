@@ -1,0 +1,105 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/Navigation.astro';
+import Banner from '../components/Banner';
+import TeamSection from '../components/TeamSection';
+import VideoCarousel from '../components/VideoCarousel';
+import ContactModal from '../components/ContactModal';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Branca Fútbol">
+  <Navigation />
+  
+  <main class="overflow-hidden">
+    <!-- Hero Section -->
+    <Banner client:load />
+
+    <!-- Team Section -->
+    <TeamSection client:load />
+
+    <!-- History Section -->
+    <section id="historia" class="py-20 relative">
+      <div class="container mx-auto px-4">
+        <div class="glassmorphic rounded-xl p-8 max-w-3xl mx-auto">
+          <h2 class="text-4xl font-bold text-center mb-8">Nuestra Historia</h2>
+          <p class="text-lg leading-relaxed">
+            Branca Fútbol ha sido un referente del fútbol local desde su fundación,
+            formando no solo grandes jugadores, sino también grandes personas.
+            Nuestra trayectoria está marcada por la pasión por el deporte y el
+            compromiso con la comunidad.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Achievements Section -->
+    <section id="logros" class="py-20 bg-club-black">
+      <div class="container mx-auto px-4">
+        <div class="glassmorphic rounded-xl p-8 max-w-3xl mx-auto">
+          <h2 class="text-4xl font-bold text-center mb-8">Nuestros Logros</h2>
+          <ul class="space-y-4 text-lg">
+            <li class="flex items-center">
+              <span class="text-club-green-light mr-2">★</span>
+              Campeones Nacionales 2023
+            </li>
+            <li class="flex items-center">
+              <span class="text-club-green-light mr-2">★</span>
+              Copa Regional 2022
+            </li>
+            <li class="flex items-center">
+              <span class="text-club-green-light mr-2">★</span>
+              Mejor Equipo Juvenil 2021
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Video Section -->
+    <section id="videos" class="py-20">
+      <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-bold text-center mb-12">Videos Recientes</h2>
+        <VideoCarousel client:visible />
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contacto" class="py-20 relative">
+      <div class="container mx-auto px-4">
+        <div class="glassmorphic rounded-xl p-8 max-w-3xl mx-auto text-center">
+          <h2 class="text-4xl font-bold mb-8">Contacto</h2>
+          <p class="text-lg mb-8">
+            ¿Interesado en unirte a nuestro club? ¿Tienes alguna pregunta?
+            No dudes en contactarnos.
+          </p>
+          <button
+            id="openContactModal"
+            class="bg-club-green-light hover:bg-club-green-dark hover:scale-105 text-white py-3 px-8 rounded-lg transition-all duration-200 shadow-lg font-bold"
+          >
+            Contáctanos
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <ContactModal client:load />
+  <Footer />
+</Layout>
+
+<script>
+  let isModalOpen = false;
+
+  document.getElementById('openContactModal')?.addEventListener('click', () => {
+    const event = new CustomEvent('openContactModal');
+    window.dispatchEvent(event);
+  });
+</script>
+
+<style>
+  section {
+    position: relative;
+    overflow: hidden;
+  }
+</style>

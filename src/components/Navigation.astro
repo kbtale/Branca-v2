@@ -1,0 +1,63 @@
+---
+const navItems = [
+  { href: '#inicio', text: 'Inicio' },
+  { href: '#equipo', text: 'Equipo' },
+  { href: '#videos', text: 'Videos' },
+  { href: '#contacto', text: 'Contacto' },
+];
+---
+
+<nav class="fixed w-full z-50 glassmorphic">
+  <div class="container mx-auto px-4">
+    <div class="flex justify-between items-center py-4">
+      <a href="#" class="flex items-center space-x-3">
+        <img src="/images/logo.png" alt="Branca Fútbol" class="w-10 h-10" />
+      </a>
+      
+      <button id="menu-toggle" class="lg:hidden">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+
+      <div class="hidden lg:flex items-center space-x-8">
+        {
+          navItems.map(({ href, text }) => (
+            <a
+              href={href}
+              class="relative px-4 py-2 text-white group transition-all duration-200"
+            >
+              <span class="relative z-10 text-white">{text}</span>
+              <div class="absolute inset-0 bg-club-green-light/20 rounded-lg opacity-0 group-hover:opacity-100 scale-90 group-hover:scale-100 transition-all duration-200"></div>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="lg:hidden hidden">
+      <div class="py-4 space-y-4">
+        {
+          navItems.map(({ href, text }) => (
+            <a
+              href={href}
+              class="block px-4 py-2 text-white hover:bg-club-green/20 rounded-lg transition-all duration-200"
+            >
+              {text}
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</nav>
+
+<script>
+  const menuToggle = document.getElementById('menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  menuToggle?.addEventListener('click', () => {
+    mobileMenu?.classList.toggle('hidden');
+  });
+</script>

@@ -1,0 +1,130 @@
+:root {
+    --primary-black: #121212;
+    --dark-green: #1a5f3f;
+    --light-green: #2a7f5f;
+    --glass-background: rgba(26, 95, 63, 0.2);
+    --glass-border: rgba(255, 255, 255, 0.125);
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: var(--primary-black);
+    color: white;
+    scroll-behavior: smooth;
+}
+
+.parallax-wrapper {
+    perspective: 1px;
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.parallax-section {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    transform-style: preserve-3d;
+    background-size: cover;
+    background-position: center;
+}
+
+.glassmorphic-nav {
+    background: var(--glass-background);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.hero-section {
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                url('https://source.unsplash.com/random/1600x900?soccer,stadium');
+    background-size: cover;
+    text-align: center;
+    color: white;
+}
+
+.hero-content {
+    text-align: center;
+    padding: 2rem;
+}
+
+.hero-content h1 {
+    font-size: 4rem;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.team-section {
+    background-color: var(--primary-black);
+}
+
+.team-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.player-card {
+    width: 250px;
+    background: var(--glass-background);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    border: 1px solid var(--glass-border);
+    padding: 1rem;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.player-card:hover {
+    transform: scale(1.05);
+}
+
+.player-card img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+}
+
+.glassmorphic-card {
+    background: var(--glass-background);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    border: 1px solid var(--glass-border);
+    padding: 2rem;
+    margin: 2rem 0;
+    max-width: 800px;
+    width: 90%;
+}
+
+section {
+    padding: 4rem 0;
+}
+
+h2 {
+    color: white;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.btn-primary {
+    background-color: var(--dark-green);
+    border-color: var(--light-green);
+}
+
+.btn-primary:hover {
+    background-color: var(--light-green);
+}
+
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+}

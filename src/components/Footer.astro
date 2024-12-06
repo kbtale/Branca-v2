@@ -1,0 +1,58 @@
+---
+const socialMedia = [
+  { name: 'Facebook', icon: 'fab fa-facebook', url: '#' },
+  { name: 'Twitter', icon: 'fab fa-twitter', url: '#' },
+  { name: 'Instagram', icon: 'fab fa-instagram', url: '#' },
+  { name: 'YouTube', icon: 'fab fa-youtube', url: '#' },
+];
+---
+
+<footer class="bg-club-black py-12 mt-20">
+  <div class="container mx-auto px-4">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <!-- Club Info -->
+      <div class="text-center md:text-left">
+        <img
+          src="/images/dark_logo.png"
+          alt="Branca Fútbol"
+          class="w-24 h-24 mx-auto md:mx-0 mb-4"
+        />
+        <h3 class="text-xl font-bold mb-2">Branca Fútbol</h3>
+        <p class="text-gray-400">Fundado en 1985</p>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="text-center md:text-left">
+        <h4 class="text-lg font-bold mb-4">Enlaces Rápidos</h4>
+        <ul class="space-y-2">
+          <li><a href="#equipo" class="text-gray-400 hover:text-white">Equipo</a></li>
+          <li><a href="#videos" class="text-gray-400 hover:text-white">Videos</a></li>
+          <li><a href="#contacto" class="text-gray-400 hover:text-white">Contacto</a></li>
+        </ul>
+      </div>
+
+      <!-- Social Media -->
+      <div class="text-center md:text-left">
+        <h4 class="text-lg font-bold mb-4">Síguenos</h4>
+        <div class="flex justify-center md:justify-start space-x-4">
+          {socialMedia.map(social => (
+            <a
+              href={social.url}
+              class="w-10 h-10 rounded-full bg-club-green hover:bg-club-green-light flex items-center justify-center transition-colors"
+              title={social.name}
+            >
+              <i class={social.icon}></i>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-8 pt-8 border-t border-gray-800 text-center text-gray-400">
+      <p>&copy; {new Date().getFullYear()} Branca Fútbol. Todos los derechos reservados.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
