@@ -1,16 +1,17 @@
 ---
 const navItems = [
-  { href: '#inicio', text: 'Inicio' },
-  { href: '#equipo', text: 'Equipo' },
-  { href: '#videos', text: 'Videos' },
-  { href: '#contacto', text: 'Contacto' },
+  { href: '#Hero', text: 'Inicio' },
+  { href: '#QuienesSomos', text: '¿Quiénes Somos?' },
+  { href: '#Equipo', text: 'El Equipazo' },
+  { href: '#Videos', text: 'Videos' },
+  { href: '#Contacto', text: 'Contacto' },
 ];
 ---
 
 <nav class="fixed w-full z-50 glassmorphic">
   <div class="container mx-auto px-4">
     <div class="flex justify-between items-center py-4">
-      <a href="#" class="flex items-center space-x-3">
+      <a href="#Hero" class="flex items-center space-x-3">
         <img src="/images/logo.png" alt="Branca Fútbol" class="w-10 h-10" />
       </a>
       
@@ -56,8 +57,36 @@ const navItems = [
 <script>
   const menuToggle = document.getElementById('menu-toggle');
   const mobileMenu = document.getElementById('mobile-menu');
+  
+  if (menuToggle && mobileMenu) {
+    menuToggle.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
 
-  menuToggle?.addEventListener('click', () => {
-    mobileMenu?.classList.toggle('hidden');
+    // Close mobile menu when clicking on a link
+    const mobileLinks = mobileMenu.querySelectorAll('a');
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+      });
+    });
+  }
+</script>
+
+<script>
+  // Add smooth scrolling behavior
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('href')?.slice(1);
+      if (targetId) {
+        const targetElement = document.getElementById(targetId);
+        if (targetElement) {
+          targetElement.scrollIntoView({
+            behavior: 'smooth'
+          });
+        }
+      }
+    });
   });
 </script>

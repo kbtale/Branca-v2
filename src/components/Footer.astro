@@ -1,55 +1,100 @@
 ---
-const socialMedia = [
-  { name: 'Facebook', icon: 'fab fa-facebook', url: '#' },
-  { name: 'Twitter', icon: 'fab fa-twitter', url: '#' },
-  { name: 'Instagram', icon: 'fab fa-instagram', url: '#' },
-  { name: 'YouTube', icon: 'fab fa-youtube', url: '#' },
-];
+const currentYear = new Date().getFullYear();
 ---
 
-<footer class="bg-club-black py-12 mt-20">
+<footer class="py-8 relative">
   <div class="container mx-auto px-4">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      <!-- Club Info -->
-      <div class="text-center md:text-left">
-        <img
-          src="/images/dark_logo.png"
-          alt="Branca Fútbol"
-          class="w-24 h-24 mx-auto md:mx-0 mb-4"
-        />
-        <h3 class="text-xl font-bold mb-2">Branca Fútbol</h3>
-        <p class="text-gray-400">Fundado en 1985</p>
-      </div>
+    <div class="glassmorphic rounded-xl p-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+        <!-- Club Info & Location -->
+        <div>
+          <h3 class="text-xl font-bold mb-4">Branca Fútbol</h3>
+          <div class="space-y-2 opacity-75">
+            <p><i class="fas fa-map-marker-alt mr-2"></i>Buenos Aires, Argentina</p>
+            <p><i class="fas fa-phone mr-2"></i>+54 11 XXXX-XXXX</p>
+            <p><i class="fas fa-envelope mr-2"></i>info@brancafutbol.com</p>
+          </div>
+        </div>
 
-      <!-- Quick Links -->
-      <div class="text-center md:text-left">
-        <h4 class="text-lg font-bold mb-4">Enlaces Rápidos</h4>
-        <ul class="space-y-2">
-          <li><a href="#equipo" class="text-gray-400 hover:text-white">Equipo</a></li>
-          <li><a href="#videos" class="text-gray-400 hover:text-white">Videos</a></li>
-          <li><a href="#contacto" class="text-gray-400 hover:text-white">Contacto</a></li>
-        </ul>
-      </div>
+        <!-- Quick Links -->
+        <div>
+          <h3 class="text-xl font-bold mb-4">Enlaces Rápidos</h3>
+          <ul class="space-y-2 opacity-75">
+            <li>
+              <a href="#QuienesSomos" class="hover:text-club-green-light transition-colors">
+                <i class="fas fa-info-circle mr-2"></i>¿Quiénes Somos?
+              </a>
+            </li>
+            <li>
+              <a href="#Equipo" class="hover:text-club-green-light transition-colors">
+                <i class="fas fa-users mr-2"></i>Nuestro Equipo
+              </a>
+            </li>
+            <li>
+              <a href="#Videos" class="hover:text-club-green-light transition-colors">
+                <i class="fas fa-play mr-2"></i>Videos
+              </a>
+            </li>
+            <li>
+              <a href="#Contacto" class="hover:text-club-green-light transition-colors">
+                <i class="fas fa-envelope mr-2"></i>Contacto
+              </a>
+            </li>
+          </ul>
+        </div>
 
-      <!-- Social Media -->
-      <div class="text-center md:text-left">
-        <h4 class="text-lg font-bold mb-4">Síguenos</h4>
-        <div class="flex justify-center md:justify-start space-x-4">
-          {socialMedia.map(social => (
-            <a
-              href={social.url}
-              class="w-10 h-10 rounded-full bg-club-green hover:bg-club-green-light flex items-center justify-center transition-colors"
-              title={social.name}
+        <!-- Newsletter Signup -->
+        <div>
+          <h3 class="text-xl font-bold mb-4">Newsletter</h3>
+          <p class="opacity-75 mb-4">Suscríbete para recibir las últimas novedades</p>
+          <form class="space-y-3">
+            <input 
+              type="email" 
+              placeholder="Tu email" 
+              class="w-full px-4 py-2 rounded-lg bg-black/20 border border-white/20 focus:border-club-green-light focus:outline-none"
+            />
+            <button 
+              type="submit" 
+              class="w-full bg-club-green-light hover:bg-club-green-dark text-white py-2 px-4 rounded-lg transition-colors"
             >
-              <i class={social.icon}></i>
-            </a>
-          ))}
+              Suscribirse
+            </button>
+          </form>
         </div>
       </div>
-    </div>
 
-    <div class="mt-8 pt-8 border-t border-gray-800 text-center text-gray-400">
-      <p>&copy; {new Date().getFullYear()} Branca Fútbol. Todos los derechos reservados.</p>
+      <!-- Social Media Links -->
+      <div class="flex flex-col items-center border-t border-white/10 pt-8">
+        <h3 class="text-xl font-bold mb-4">Síguenos en nuestras redes</h3>
+        <div class="flex gap-6 mb-8">
+          <a href="https://www.youtube.com/channel/UC5foBiEh5gRKVQa2krgLUAw" target="_blank" rel="noopener noreferrer" 
+             class="text-white hover:text-club-green-light transition-colors">
+            <i class="fab fa-youtube text-2xl"></i>
+          </a>
+          <a href="https://instagram.com/brancafutbol_sa" target="_blank" rel="noopener noreferrer"
+             class="text-white hover:text-club-green-light transition-colors">
+            <i class="fab fa-instagram text-2xl"></i>
+          </a>
+          <a href="https://www.twitch.tv/bbell00" target="_blank" rel="noopener noreferrer"
+             class="text-white hover:text-club-green-light transition-colors">
+            <i class="fab fa-twitch text-2xl"></i>
+          </a>
+          <a href="https://discord.gg/n456hgJ4" target="_blank" rel="noopener noreferrer"
+             class="text-white hover:text-club-green-light transition-colors">
+            <i class="fab fa-discord text-2xl"></i>
+          </a>
+        </div>
+
+        <!-- Copyright -->
+        <div class="text-center opacity-75">
+          <p>&copy; {currentYear} Branca Fútbol. Todos los derechos reservados.</p>
+          <p class="text-sm mt-2">
+            <a href="#" class="hover:text-club-green-light transition-colors">Política de Privacidad</a>
+            <span class="mx-2">|</span>
+            <a href="#" class="hover:text-club-green-light transition-colors">Términos y Condiciones</a>
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 </footer>

@@ -33,8 +33,6 @@ export default function VideoCarousel() {
       const response = await fetch('/api/youtube');
       if (!response.ok) throw new Error('Error fetching videos');
       const data = await response.json();
-      console.log('API Response:', data);
-      console.log('First video publishedAt:', data[0]?.publishedAt);
       setVideos(data);
     } catch (err) {
       setError('Error loading videos');

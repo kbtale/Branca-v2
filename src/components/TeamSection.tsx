@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import PlayerCard, { PlayerProps } from './PlayerCard';
 
 const categories = [
@@ -10,6 +10,15 @@ const categories = [
   'Porteros',
   'Cuerpo Técnico'
 ] as const;
+
+const categoryColors: Record<string, string> = {
+  'Todos': 'bg-club-green-light',
+  'Delanteros': 'bg-club-green-light',
+  'Centrocampistas': 'bg-club-green-light',
+  'Defensas': 'bg-club-green-light',
+  'Porteros': 'bg-club-green-light',
+  'Cuerpo Técnico': 'bg-club-green-light'
+};
 
 const players: PlayerProps[] = [
   // Delanteros
@@ -139,15 +148,6 @@ const players: PlayerProps[] = [
   }
 ];
 
-const categoryColors = {
-  Delanteros: 'bg-red-500',
-  Centrocampistas: 'bg-blue-500',
-  Defensas: 'bg-green-500',
-  Porteros: 'bg-yellow-500',
-  'Cuerpo Técnico': 'bg-purple-500',
-  Todos: 'bg-gray-500'
-};
-
 export default function TeamSection() {
   const [selectedCategory, setSelectedCategory] = useState<typeof categories[number]>('Todos');
 
@@ -156,48 +156,39 @@ export default function TeamSection() {
   );
 
   return (
-    <section className="py-20">
-      <div className="container mx-auto px-4">
-        <h2 className="text-4xl font-bold text-center mb-12">Nuestro Equipo</h2>
-        
-        {/* Category Filter */}
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
-          {categories.map(category => (
-            <button
-              key={category}
-              onClick={() => setSelectedCategory(category)}
-              className={`px-6 py-2 rounded-full transition-all transform hover:scale-105 ${
-                selectedCategory === category
-                  ? `${categoryColors[category]} text-white shadow-lg`
-                  : 'bg-white/10 hover:bg-white/20'
-              }`}
-            >
-              {category}
-            </button>
-          ))}
-        </div>
-
-        {/* Players Grid */}
-        <motion.div 
-          layout
-          className="flex flex-wrap justify-center gap-8"
-        >
-          <AnimatePresence>
-            {filteredPlayers.map(player => (
-              <motion.div
-                key={player.name}
-                layout
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.8 }}
-                transition={{ duration: 0.3 }}
-              >
-                <PlayerCard {...player} />
-              </motion.div>
-            ))}
-          </AnimatePresence>
-        </motion.div>
+    <div className="container mx-auto px-4">
+      <h2 className="text-4xl font-bold text-center mb-12">El Equipazo</h2>
+      
+      {/* Category Filter */}
+      <div className="flex flex-wrap justify-center gap-4 mb-12">
+        {categories.map(category => (
+          <button
+            key={category}
+            onClick={() => setSelectedCategory(category)}
+            className={`px-6 py-2 rounded-full transition-all ${
+              selectedCategory === category
+                ? `${categoryColors[category]} text-white shadow-lg`
+                : 'bg-white/10 hover:bg-white/20'
+            }`}
+          >
+            {category}
+          </button>
+        ))}
       </div>
-    </section>
+
+      {/* Players Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
+        {filteredPlayers.map(player => (
+          <motion.div
+            key={player.name}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <PlayerCard {...player} />
+          </motion.div>
+        ))}
+      </div>
+    </div>
   );
 }
