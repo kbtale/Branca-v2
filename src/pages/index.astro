@@ -1,12 +1,12 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Navigation from '../components/Navigation.astro';
-import Banner from '../components/Banner';
-import TeamSection from '../components/TeamSection';
-import VideoCarousel from '../components/VideoCarousel';
-import ContactModal from '../components/ContactModal';
+import Banner from '../components/Banner.astro';
+import TeamSection from '../components/TeamSection.astro';
+import VideoCarousel from '../components/VideoCarousel.astro';
+import ContactModal from '../components/ContactModal.astro';
 import Footer from '../components/Footer.astro';
-import RotatingLogo from '../components/RotatingLogo';
+import RotatingLogo from '../components/RotatingLogo.astro';
 ---
 
 <Layout title="Branca Fútbol">
@@ -14,17 +14,17 @@ import RotatingLogo from '../components/RotatingLogo';
   
   <main class="overflow-hidden">
     <!-- Hero Section -->
-    <section id="Hero">
-      <Banner client:load />
-    </section>
+    <div id="hero">
+      <Banner />
+    </div>
 
     <!-- About Section -->
-    <section id="QuienesSomos" class="py-20 relative">
+    <section id="quienes-somos" class="relative py-20">
       <div class="container mx-auto px-4">
         <div class="glassmorphic rounded-xl p-8 max-w-3xl mx-auto">
           <div class="flex items-start gap-8">
             <div class="flex-shrink-0">
-              <RotatingLogo client:load />
+              <RotatingLogo />
             </div>
             <div>
               <h2 class="text-4xl font-bold mb-8">¿Quiénes Somos?</h2>
@@ -41,24 +41,24 @@ import RotatingLogo from '../components/RotatingLogo';
     </section>
 
     <!-- Team Section -->
-    <section id="Equipo" class="py-20">
-      <TeamSection client:load />
+    <section id="equipo" class="py-20">
+      <TeamSection />
     </section>
 
     <!-- Video Section -->
-    <section id="Videos" class="py-20">
+    <section id="videos" class="py-20">
       <div class="container mx-auto px-4">
         <h2 class="text-4xl font-bold text-center mb-12">Videos Recientes</h2>
-        <VideoCarousel client:visible />
+        <VideoCarousel />
       </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="Contacto" class="py-20">
+    <section id="contacto" class="py-20">
       <div class="container mx-auto px-4">
         <div class="glassmorphic rounded-xl p-8 max-w-3xl mx-auto">
           <h2 class="text-4xl font-bold text-center mb-8">Contacto</h2>
-          <ContactModal client:load defaultOpen={true} />
+          <ContactModal defaultOpen={true} />
         </div>
       </div>
     </section>

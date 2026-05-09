@@ -1,0 +1,90 @@
+---
+---
+
+<section class="relative h-screen w-full overflow-hidden bg-club-dark" id="banner-parallax">
+  <!-- Layers: sky (back), field (mid), grass (front) -->
+  <div class="parallax-layer absolute -top-[12vh] -bottom-[12vh] left-0 right-0 overflow-hidden will-change-transform" data-speed="0.08" data-role="sky">
+    <img src="/images/SKY_BANNER.png" aria-hidden="true" alt="" class="h-full w-full object-cover object-center" />
+  </div>
+
+  <div class="parallax-layer absolute -top-[12vh] -bottom-[12vh] left-0 right-0 overflow-hidden will-change-transform" data-speed="0.12" data-role="field">
+    <img src="/images/FIELD_BANNER.png" aria-hidden="true" alt="" class="h-full w-full scale-[1.08] object-cover object-bottom" />
+  </div>
+
+  <div class="parallax-layer absolute -top-[12vh] -bottom-[12vh] left-0 right-0 overflow-hidden will-change-transform" data-speed="0.16" data-role="grass">
+    <img src="/images/GRASS_BANNER.png" aria-hidden="true" alt="" class="h-full w-full scale-[1.1] object-cover object-bottom" />
+  </div>
+
+  <!-- Dark overlay to keep text legible -->
+  <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black/60 pointer-events-none"></div>
+
+  <div class="absolute inset-0 flex items-center justify-center px-4 text-center z-10">
+    <div class="max-w-3xl">
+      <img
+        src="/images/logo.png"
+        alt="Branca Fútbol"
+        class="mx-auto mb-8 h-40 w-40 object-contain drop-shadow-2xl sm:h-48 sm:w-48 banner-logo"
+      />
+      <h1 class="text-4xl font-bold text-white drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)] sm:text-5xl lg:text-6xl">
+        Bienvenido a Branca Fútbol
+      </h1>
+      <p class="mt-4 text-lg text-white/90 drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)] sm:text-xl">
+        Pasión por el deporte rey
+      </p>
+    </div>
+  </div>
+
+  <script>
+    // Lightweight scroll-based parallax using rAF
+    (function () {
+      const root = document.getElementById('banner-parallax');
+      if (!root) return;
+
+      const layers = Array.from(root.querySelectorAll('.parallax-layer'));
+      const layerData = layers.map((el) => ({ el, speed: Number(el.dataset.speed) || 0.3 }));
+
+      let ticking = false;
+
+      function update() {
+        const rect = root.getBoundingClientRect();
+        const offset = Math.max(0, -rect.top); // how much the user scrolled past the top of the banner
+
+        layerData.forEach(({ el, speed }) => {
+          const translate = -offset * speed;
+          el.style.transform = `translate3d(0, ${translate}px, 0)`;
+        });
+
+        ticking = false;
+      }
+
+      function onScroll() {
+        if (!ticking) {
+          ticking = true;
+          requestAnimationFrame(update);
+        }
+      }
+
+      // initial position
+      update();
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll);
+    })();
+  </script>
+</section>
+
+<style>
+  .banner-logo {
+    animation: banner-float 6s ease-in-out infinite;
+  }
+
+  @keyframes banner-float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+
+    50% {
+      transform: translateY(-8px);
+    }
+  }
+</style>

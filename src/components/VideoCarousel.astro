@@ -1,0 +1,110 @@
+---
+---
+
+<section class="relative mx-auto w-full max-w-4xl px-4 md:px-0" data-video-carousel>
+  <div class="relative overflow-hidden rounded-2xl border border-white/10 bg-club-dark shadow-2xl">
+    <div class="aspect-video bg-black/40">
+      <iframe
+        data-video-frame
+        width="100%"
+        height="100%"
+        src=""
+        title="Videos recientes"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+        class="border-0"
+      ></iframe>
+    </div>
+
+    <div class="p-6 md:p-8">
+      <h3 data-video-title class="mb-2 text-xl font-bold text-white">Cargando videos...</h3>
+      <p data-video-date class="text-sm text-gray-400"></p>
+    </div>
+
+    <div class="pointer-events-none absolute left-0 right-0 top-1/2 flex -translate-y-1/2 justify-between px-4">
+      <button data-video-prev type="button" aria-label="Previous video" class="pointer-events-auto flex h-12 w-12 items-center justify-center rounded-full border border-white/20 bg-black/80 text-white transition-all duration-200 hover:scale-110 hover:bg-club-green">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>
+      <button data-video-next type="button" aria-label="Next video" class="pointer-events-auto flex h-12 w-12 items-center justify-center rounded-full border border-white/20 bg-black/80 text-white transition-all duration-200 hover:scale-110 hover:bg-club-green">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+    </div>
+
+    <div data-video-indicators class="absolute -bottom-12 left-1/2 flex -translate-x-1/2 gap-3"></div>
+  </div>
+</section>
+
+<script>
+  const root = document.querySelector('[data-video-carousel]');
+
+  if (root) {
+    const frame = root.querySelector('[data-video-frame]');
+    const title = root.querySelector('[data-video-title]');
+    const date = root.querySelector('[data-video-date]');
+    const prevButton = root.querySelector('[data-video-prev]');
+    const nextButton = root.querySelector('[data-video-next]');
+    const indicators = root.querySelector('[data-video-indicators]');
+
+    let videos = [];
+    let currentIndex = 0;
+
+    const render = () => {
+      if (!videos.length) {
+        if (frame) frame.setAttribute('src', '');
+        if (title) title.textContent = 'No hay videos disponibles';
+        if (date) date.textContent = '';
+        if (indicators) indicators.innerHTML = '';
+        return;
+      }
+
+      const video = videos[currentIndex];
+      if (frame) frame.setAttribute('src', `https://www.youtube.com/embed/${video.id}`);
+      if (title) title.textContent = video.title;
+      if (date) date.textContent = video.publishedAt;
+
+      if (indicators) {
+        indicators.innerHTML = videos
+          .map((_, index) => `<button type="button" data-index="${index}" class="h-3 w-3 rounded-full transition-all duration-300 ${index === currentIndex ? 'bg-club-green-light' : 'bg-white/20 hover:bg-white/40'}" aria-label="Go to video ${index + 1}"></button>`)
+          .join('');
+
+        indicators.querySelectorAll('[data-index]').forEach((button) => {
+          button.addEventListener('click', () => {
+            currentIndex = Number(button.getAttribute('data-index'));
+            render();
+          });
+        });
+      }
+    };
+
+    const loadVideos = async () => {
+      try {
+        const response = await fetch('/api/youtube');
+        if (!response.ok) throw new Error('Error fetching videos');
+        videos = await response.json();
+        render();
+      } catch (error) {
+        if (title) title.textContent = 'Error loading videos';
+        if (date) date.textContent = '';
+        console.error(error);
+      }
+    };
+
+    prevButton?.addEventListener('click', () => {
+      if (!videos.length) return;
+      currentIndex = (currentIndex - 1 + videos.length) % videos.length;
+      render();
+    });
+
+    nextButton?.addEventListener('click', () => {
+      if (!videos.length) return;
+      currentIndex = (currentIndex + 1) % videos.length;
+      render();
+    });
+
+    loadVideos();
+  }
+</script>

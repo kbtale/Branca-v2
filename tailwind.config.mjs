@@ -4,6 +4,7 @@ export default {
   theme: {
     extend: {
       colors: {
+        'club-dark': '#121212',
         'club-black': '#121212',
         'club-green': {
           dark: '#1a5f3f',
