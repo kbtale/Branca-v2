@@ -2,25 +2,25 @@ import type { APIRoute } from 'astro';
 
 const FALLBACK_VIDEOS = [
   {
-    id: 'dQw4w9WgXcQ',
-    title: 'Video destacado 1',
-    thumbnail: 'https://i.ytimg.com/vi/dQw4w9WgXcQ/hqdefault.jpg',
-    publishedAt: 'Disponible ahora',
-    description: 'Video de respaldo para desarrollo local.'
+    id: 'uGDrch8lwEM',
+    title: 'Branca Fútbol - Video 1',
+    thumbnail: 'https://i.ytimg.com/vi/uGDrch8lwEM/hqdefault.jpg',
+    publishedAt: 'Branca Fútbol',
+    description: 'Video real de Branca Fútbol.'
   },
   {
-    id: '9bZkp7q19f0',
-    title: 'Video destacado 2',
-    thumbnail: 'https://i.ytimg.com/vi/9bZkp7q19f0/hqdefault.jpg',
-    publishedAt: 'Disponible ahora',
-    description: 'Video de respaldo para desarrollo local.'
+    id: '-2cPeC7t7YI',
+    title: 'Branca Fútbol - Video 2',
+    thumbnail: 'https://i.ytimg.com/vi/-2cPeC7t7YI/hqdefault.jpg',
+    publishedAt: 'Branca Fútbol',
+    description: 'Video real de Branca Fútbol.'
   },
   {
-    id: '3JZ_D3ELwOQ',
-    title: 'Video destacado 3',
-    thumbnail: 'https://i.ytimg.com/vi/3JZ_D3ELwOQ/hqdefault.jpg',
-    publishedAt: 'Disponible ahora',
-    description: 'Video de respaldo para desarrollo local.'
+    id: 'iR28iG8L6gY',
+    title: 'Branca Fútbol - Video 3',
+    thumbnail: 'https://i.ytimg.com/vi/iR28iG8L6gY/hqdefault.jpg',
+    publishedAt: 'Branca Fútbol',
+    description: 'Video real de Branca Fútbol.'
   }
 ];
 

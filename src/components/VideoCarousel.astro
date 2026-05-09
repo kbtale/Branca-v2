@@ -49,18 +49,27 @@
     const nextButton = root.querySelector('[data-video-next]');
     const indicators = root.querySelector('[data-video-indicators]');
 
-    let videos = [];
+    const videos = [
+      {
+        id: 'uGDrch8lwEM',
+        title: 'Branca Fútbol',
+        publishedAt: 'Video destacado 1'
+      },
+      {
+        id: '-2cPeC7t7YI',
+        title: 'Branca Fútbol',
+        publishedAt: 'Video destacado 2'
+      },
+      {
+        id: 'iR28iG8L6gY',
+        title: 'Branca Fútbol',
+        publishedAt: 'Video destacado 3'
+      }
+    ];
+
     let currentIndex = 0;
 
     const render = () => {
-      if (!videos.length) {
-        if (frame) frame.setAttribute('src', '');
-        if (title) title.textContent = 'No hay videos disponibles';
-        if (date) date.textContent = '';
-        if (indicators) indicators.innerHTML = '';
-        return;
-      }
-
       const video = videos[currentIndex];
       if (frame) frame.setAttribute('src', `https://www.youtube.com/embed/${video.id}`);
       if (title) title.textContent = video.title;
@@ -80,31 +89,16 @@
       }
     };
 
-    const loadVideos = async () => {
-      try {
-        const response = await fetch('/api/youtube');
-        if (!response.ok) throw new Error('Error fetching videos');
-        videos = await response.json();
-        render();
-      } catch (error) {
-        if (title) title.textContent = 'Error loading videos';
-        if (date) date.textContent = '';
-        console.error(error);
-      }
-    };
-
     prevButton?.addEventListener('click', () => {
-      if (!videos.length) return;
       currentIndex = (currentIndex - 1 + videos.length) % videos.length;
       render();
     });
 
     nextButton?.addEventListener('click', () => {
-      if (!videos.length) return;
       currentIndex = (currentIndex + 1) % videos.length;
       render();
     });
 
-    loadVideos();
+    render();
   }
 </script>
