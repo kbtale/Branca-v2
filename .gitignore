@@ -23,3 +23,9 @@ pnpm-debug.log*
 .idea/
 *.swp
 *.swo
+
+# git worktrees (project-local)
+.worktrees/
+
+*.md
+!README.md
